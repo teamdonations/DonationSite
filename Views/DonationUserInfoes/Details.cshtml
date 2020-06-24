@@ -1,0 +1,50 @@
+﻿@model Donations_Software.Models.DonationUserInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DonationUserInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonationDetail.DonationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonationDetail.DonationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalInfo.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DUID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

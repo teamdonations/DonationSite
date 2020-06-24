@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "UserCreate";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserCreate</title>
+</head>
+<body>
+    <h4>Personal Info</h4>
+
+    @*<form asp-action="Index" asp-controller="Form">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" placeholder="Your name goes here" />
+        <input type="submit" />
+        <input name="__RequestVerificationToken" type="hidden" value="<token_generated_here>">
+    </form>*@
+
+    @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        @*<td>@Html.Label("Enter First Name:")</td>
+                        <td>@Html.TextBox("FirstName")</td>*@
+                        <td>@Html.Label("Enter First Name: ")</td>
+                        <td>@Html.TextBox("FirstName")</td>
+                    </tr>
+                </table>
+            }
+            <input type="submit" value="Continue") />
+            <a href="@Url.Action("Index", "Confirmation")">Click to Continue...</a>
+</body>
+</html>

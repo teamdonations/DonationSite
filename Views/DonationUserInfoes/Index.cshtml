@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Donations_Software.Models.DonationUserInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DonationDetail.DonationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DonationDetail.DonationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonalInfo.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DUID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DUID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DUID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="teamdonationsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DonationDetail">
+    <Key>
+      <PropertyRef Name="DonationID" />
+    </Key>
+    <Property Name="DonationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ImageURL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="isMonthly" Type="Boolean" />
+    <NavigationProperty Name="DonationUserInfoes" Relationship="Self.FK__DonationU__Donat__2B3F6F97" FromRole="DonationDetails" ToRole="DonationUserInfo" />
+  </EntityType>
+  <EntityType Name="DonationUserInfo">
+    <Key>
+      <PropertyRef Name="DUID" />
+    </Key>
+    <Property Name="DUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DonationID" Type="Int32" />
+    <Property Name="personalInfoID" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="DonationDetail" Relationship="Self.FK__DonationU__Donat__2B3F6F97" FromRole="DonationUserInfo" ToRole="DonationDetails" />
+    <NavigationProperty Name="PersonalInfo" Relationship="Self.FK__DonationU__perso__2C3393D0" FromRole="DonationUserInfo" ToRole="PersonalInfo" />
+  </EntityType>
+  <EntityType Name="PersonalInfo">
+    <Key>
+      <PropertyRef Name="personalInfoID" />
+    </Key>
+    <Property Name="personalInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CMA_" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Urbanization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DonationUserInfoes" Relationship="Self.FK__DonationU__perso__2C3393D0" FromRole="PersonalInfo" ToRole="DonationUserInfo" />
+    <NavigationProperty Name="User" Relationship="Self.FK__PersonalI__UserI__267ABA7A" FromRole="PersonalInfo" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isAdmin" Type="Boolean" />
+    <NavigationProperty Name="PersonalInfoes" Relationship="Self.FK__PersonalI__UserI__267ABA7A" FromRole="Users" ToRole="PersonalInfo" />
+  </EntityType>
+  <Association Name="FK__DonationU__Donat__2B3F6F97">
+    <End Role="DonationDetails" Type="Self.DonationDetail" Multiplicity="0..1" />
+    <End Role="DonationUserInfo" Type="Self.DonationUserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonationDetails">
+        <PropertyRef Name="DonationID" />
+      </Principal>
+      <Dependent Role="DonationUserInfo">
+        <PropertyRef Name="DonationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DonationU__perso__2C3393D0">
+    <End Role="PersonalInfo" Type="Self.PersonalInfo" Multiplicity="0..1" />
+    <End Role="DonationUserInfo" Type="Self.DonationUserInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonalInfo">
+        <PropertyRef Name="personalInfoID" />
+      </Principal>
+      <Dependent Role="DonationUserInfo">
+        <PropertyRef Name="personalInfoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PersonalI__UserI__267ABA7A">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="PersonalInfo" Type="Self.PersonalInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PersonalInfo">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="teamdonationsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DonationDetails" EntityType="Self.DonationDetail" />
+    <EntitySet Name="DonationUserInfoes" EntityType="Self.DonationUserInfo" />
+    <EntitySet Name="PersonalInfoes" EntityType="Self.PersonalInfo" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__DonationU__Donat__2B3F6F97" Association="Self.FK__DonationU__Donat__2B3F6F97">
+      <End Role="DonationDetails" EntitySet="DonationDetails" />
+      <End Role="DonationUserInfo" EntitySet="DonationUserInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DonationU__perso__2C3393D0" Association="Self.FK__DonationU__perso__2C3393D0">
+      <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
+      <End Role="DonationUserInfo" EntitySet="DonationUserInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PersonalI__UserI__267ABA7A" Association="Self.FK__PersonalI__UserI__267ABA7A">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

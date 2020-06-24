@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Donations_Software.Models.DonationDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Our Charities</h2>
+
+@{  
+    if (Session["isAdmin"].ToString() == "True")
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DonationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isMonthly)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DonationName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @{
+            Session["DonationID"] = item.DonationID;
+            Session["Price"] = item.Price;
+        }
+        @{
+            if (item.ImageURL != null)
+            {
+                <a href="@Url.Action("Create", "PersonalInfoes" ,item)">
+                    <img src="@Url.Content(item.ImageURL)" />
+                </a>
+
+                }
+
+                }
+
+
+            </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.isMonthly)
+    </td>
+    @{
+        if (Session["isAdmin"].ToString() == "True")
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DonationID })
+            </td>
+        }
+    }
+
+</tr>
+}
+
+</table>
