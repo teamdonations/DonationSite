@@ -12,20 +12,18 @@
         <h4>Personal Info</h4>
         <hr />
         <h4>
-          @ViewData["DonationName"]
+            @ViewData["DonationName"]
         </h4>
         @{
-            if (Session["isAdmin"].ToString() == "True")
-            {
+            
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
+                <div class="form-group" hidden>
                     @Html.LabelFor(model => model.UserID, "UserID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            }
         }
 
         <div class="form-group">
@@ -117,15 +115,13 @@
         </div>
 
         @{
-            if (Session["isAdmin"].ToString() == "True")
-            {
                 <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Continue" class="btn btn-default" />
-                                <input type="button" value="Cancel" onclick="window.location.href('@Url.Action("Index","DonationDetails")')" class="btn btn-default" />
-                            </div>
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Continue" class="btn btn-default" />
+                        <input type="button" value="Cancel" onclick="window.location.href('@Url.Action("Index","DonationDetails")')" class="btn btn-default" />
+                    </div>
                 </div>
-            }
+          
         }
 
     </div>
@@ -138,6 +134,7 @@
             @Html.ActionLink("Back to List", "Index")
         </div>
     }
+
 }
 
 @section Scripts {

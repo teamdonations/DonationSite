@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Donations_Software.Models.DonationUserInfo>
+
+@{
+    ViewBag.Title = "ModalPopUp";
+}
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .button1 {
+        border-radius: 2px;
+    }
+
+    .button2 {
+        border-radius: 4px;
+    }
+
+    .button3 {
+        border-radius: 8px;
+    }
+
+    .button4 {
+        border-radius: 12px;
+    }
+
+    .button5 {
+        border-radius: 50%;
+    }
+</style>
+<div>
+    <h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">Checkout</h2>
+    <fieldset>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div>
+                        <table class="table">
+                            <tr>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DonationDetail.DonationName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Amount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Date)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
+                                </th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DonationDetail.DonationName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Date)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PersonalInfo.FirstName)
+                                    </td>
+
+                                </tr>
+                            }
+                            <tr>
+                                <td align="right">
+                                    Total: $
+                                </td>
+                                <td>
+                                    @ViewData["total"];
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button id="btnShowModal" type="button"
+                                            class="btn btn-sm btn-default pull-left col-lg-11 button button4">
+                                        Continue to checkout
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                    <div class="modal fade" tabindex="-1" id="checkoutModal"
+                         data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        ×
+                                    </button>
+                                    <h4 class="modal-title">Checkout Page</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <h4 class="modal-title">Thank you for choosing to donate!</h4>
+                                            <h4 class="modal-title">You will receive a confirmation email on:</h4>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary button button4">Confirm</button>
+                                    <button type="button" id="btnHideModal" class="btn btn-primary button button4">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>
+<footer>
+    <p style="background-color: Yellow; font-weight: bold; color:blue; text-align: center; font-style: oblique">
+        ©
+        <script>document.write(new Date().toDateString());</script>
+    </p>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+
+</script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            $("#checkoutModal").modal('show');
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#checkoutModal").modal('hide');
+        });
+    });
+</script>
+

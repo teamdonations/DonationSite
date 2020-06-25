@@ -1,21 +1,56 @@
-﻿
+﻿@model IEnumerable<Donations_Software.Models.DonationUserInfo>
+
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
+<table class="table">
+    <tr>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        Placeholder text
-    </div>
-    <div>Session DonationID is @Session["DonationID"]</div>
-    <div>Session Firstname is @Session["FirstName"]</div>
-    <div>Session Price is @Session["Price"]</div>
-</body>
-</html>
+        <th>
+            @Html.DisplayNameFor(model => model.DonationDetail.DonationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonationDetail.DonationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonalInfo.FirstName)
+            </td>
+            
+        </tr>
+    }
+    <tr>
+        <td align="right">
+            Total: $
+        </td>
+        <td>
+            @ViewData["total"];
+        </td>
+        <td>
+            <input type="button" value="Continue" onclick="window.location.href('@Url.Action("ModalPopUp")')" class="btn btn-default" />
+        </td>
+    </tr>
+
+
+</table>
+

@@ -53,12 +53,11 @@
             if (item.ImageURL != null)
             {
                 <a href="@Url.Action("Create", "PersonalInfoes" ,item)">
-                    <img src="@Url.Content(item.ImageURL)" />
+                    <img src="@Url.Content(item.ImageURL)" alt="Image" height="50" width="50"/>
                 </a>
 
                 }
-
-                }
+            }
 
 
             </td>

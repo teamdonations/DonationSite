@@ -24,8 +24,11 @@
             <div class="col-lg-2">@Html.LabelFor(a => a.Password)</div>
             <div class="col-lg-10">@Html.TextBoxFor(a => a.Password, new { @class = "form-control", type = "Password" })</div>
         </div><br />
+        <div>
         <input type="submit" value="Login" class="btn btn-primary" />
-    }
+        <input type="button" value="Register" onclick="window.location.href('@Url.Action("Create","Users")')" class="btn btn-default" />  
+        </div>
+        }
 
 </div>
 

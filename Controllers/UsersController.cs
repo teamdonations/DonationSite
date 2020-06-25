@@ -55,14 +55,14 @@ namespace Donations_Software.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
-            if (Session["isAdmin"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else if (Session["isAdmin"].ToString() != "True")
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            //if (Session["isAdmin"] == null)
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            //else if (Session["isAdmin"].ToString() != "True")
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
             return View();
         }
 
@@ -75,6 +75,11 @@ namespace Donations_Software.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if (Session["isAdmin"].ToString() != "True")
+                    user.isAdmin = false;
+                //else
+                //    user.isAdmin = true;
+                
                 db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -2,17 +2,12 @@
 { 
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Welcome "+Session["FullName"], "Login", "Home")</li>
+            <li>@Html.ActionLink("Welcome! "+Session["FullName"], "Login", "Home")</li>
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
         </ul>
     </div>
 }
 else
 {
-    <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Login", "Login", "Home")</li>
-            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        </ul>
-    </div>
+    <center><h1>Donate Today</h1></center>
 }

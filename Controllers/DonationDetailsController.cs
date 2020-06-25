@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Donations_Software.Models;
+using System.IO;
 
 namespace Donations_Software.Controllers
 {
@@ -64,10 +65,14 @@ namespace Donations_Software.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DonationID,DonationName,Description,ImageURL,Price,isMonthly")] DonationDetail donationDetail)
+        public ActionResult Create([Bind(Include = "DonationID,DonationName,Description,ImageURL,Price,isMonthly")] DonationDetail donationDetail, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                donationDetail.ImageURL = "~/Images/" + file.FileName;
+
                 db.DonationDetails.Add(donationDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,10 +110,14 @@ namespace Donations_Software.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DonationID,DonationName,Description,ImageURL,Price,isMonthly")] DonationDetail donationDetail)
+        public ActionResult Edit([Bind(Include = "DonationID,DonationName,Description,ImageURL,Price,isMonthly")] DonationDetail donationDetail, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
+                string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                donationDetail.ImageURL = "~/Images/" + file.FileName;
+
                 db.Entry(donationDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

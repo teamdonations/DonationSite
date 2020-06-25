@@ -18,14 +18,14 @@ namespace Donations_Software.Controllers
         // GET: DonationUserInfoes
         public ActionResult Index()
         {
-            if (Session["isAdmin"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            else if (Session["isAdmin"].ToString() != "True")
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            //if (Session["isAdmin"] == null)
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
+            //else if (Session["isAdmin"].ToString() != "True")
+            //{
+            //    return RedirectToAction("Login", "Home");
+            //}
 
             var donationUserInfoes = db.DonationUserInfoes.Include(d => d.DonationDetail).Include(d => d.PersonalInfo);
             return View(donationUserInfoes.ToList());
@@ -215,11 +215,11 @@ namespace Donations_Software.Controllers
 
                 }
                
-
-                return RedirectToAction("Index");
+                TempData["personalInfoID"] = personalInfo.personalInfoID;
+                return RedirectToAction("ModalPopUp", "Confirmation");
             }
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
         }
         protected override void Dispose(bool disposing)
         {

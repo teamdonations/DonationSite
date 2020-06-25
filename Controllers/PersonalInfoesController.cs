@@ -81,8 +81,10 @@ namespace Donations_Software.Controllers
         {
             if (ModelState.IsValid)
             {
-             //  db.PersonalInfoes.Add(personalInfo);
-              // db.SaveChanges();
+
+                //  db.PersonalInfoes.Add(personalInfo);
+                // db.SaveChanges();
+                personalInfo.UserID = Convert.ToInt32(Session["UserID"]);
                 TempData["PersonalInfo"] = personalInfo;
                 //  return RedirectToRoute("Index", "DonationUserInfoes");
                 return RedirectToAction("Gifts", "DonationUserInfoes");
@@ -169,9 +171,6 @@ namespace Donations_Software.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-     
 
         protected override void Dispose(bool disposing)
         {

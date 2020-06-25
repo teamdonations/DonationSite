@@ -245,9 +245,12 @@
     <Content Include="Views\Confirmation\Index.cshtml" />
     <Content Include="Views\PersonalInfoes\UserCreate.cshtml" />
     <Content Include="Views\DonationUserInfoes\Gifts.cshtml" />
+    <Content Include="Views\Confirmation\Total.cshtml" />
+    <Content Include="Views\Confirmation\ModalPopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
