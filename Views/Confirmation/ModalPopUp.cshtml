@@ -48,6 +48,7 @@
                 <div class="col-xs-12">
 
                     <div>
+                        @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
                         <table class="table">
                             <tr>
 
@@ -57,13 +58,14 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.Amount)
                                 </th>
-                                <th>
+                              @*<th>
                                     @Html.DisplayNameFor(model => model.Date)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
-                                </th>
+                                </th>*@
                             </tr>
+
 
                             @foreach (var item in Model)
                             {
@@ -74,22 +76,22 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Amount)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Date)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PersonalInfo.FirstName)
-                                    </td>
+                                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+
+                                    *@
 
                                 </tr>
                             }
                             <tr>
-                                <td align="right">
-                                    Total: $
-                                </td>
-                                <td>
-                                    @ViewData["total"];
-                                </td>
+                                    <td align="right"><b>
+                                        Total: $
+                                        </b>
+                                    </td>
+                                    <td>
+                                        @ViewData["total"]
+                                    </td>
                             </tr>
                             <tr>
                                 <td>

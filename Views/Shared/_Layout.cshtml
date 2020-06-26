@@ -7,6 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
+    
 <body>
     @if (Session["UserID"] != null)
     {
@@ -31,16 +33,17 @@
                     else
                     {
                         @*@Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });*@
-                                               
+                        @Html.ActionLink("Donations", "Index", "DonationDetails", new { area = "" }, new { @class = "navbar-brand" });
+                        @Html.ActionLink("Donation History", "DonationsUser", "Confirmation", new { area = "" }, new { @class = "navbar-brand" });
                     }
 
 
                     @*@Html.ActionLink(", "Index", "Home",
-            new { area = "" }, new { @class = "navbar-brand" })*@
+                        new { area = "" }, new { @class = "navbar-brand" })*@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <p class="navbar-brand"><b >@Session["FullName"]</b></p>
+                        <p class="navbar-brand">Welcome,<b> @Session["FullName"]</b></p>
                     </li>
                     <li>@Html.ActionLink("Logout", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });</li>
                 </ul>

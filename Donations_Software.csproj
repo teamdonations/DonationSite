@@ -247,6 +247,7 @@
     <Content Include="Views\DonationUserInfoes\Gifts.cshtml" />
     <Content Include="Views\Confirmation\Total.cshtml" />
     <Content Include="Views\Confirmation\ModalPopUp.cshtml" />
+    <Content Include="Views\Confirmation\DonationsUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

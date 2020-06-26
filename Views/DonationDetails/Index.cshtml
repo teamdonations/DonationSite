@@ -1,84 +1,118 @@
-﻿@model IEnumerable<Donations_Software.Models.DonationDetail>
+﻿<!DOCTYPE html>
+<style>
+h1 { font-family: fantasy }
+</style>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Our Charities</h2>
+    @model IEnumerable<Donations_Software.Models.DonationDetail>
 
-@{  
-    if (Session["isAdmin"].ToString() == "True")
-    {
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+    @{
+        ViewBag.Title = "Index";
     }
-}
+    <h1>Charities</h1>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DonationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.isMonthly)*@
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model)
-{
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.DonationName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @{
-            Session["DonationID"] = item.DonationID;
-            Session["Price"] = item.Price;
-        }
-        @{
-            if (item.ImageURL != null)
-            {
-                <a href="@Url.Action("Create", "PersonalInfoes" ,item)">
-                    <img src="@Url.Content(item.ImageURL)" alt="Image" height="50" width="50"/>
-                </a>
-
-                }
-            }
-
-
-            </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Price)
-    </td>
-    <td>
-        @*@Html.DisplayFor(modelItem => item.isMonthly)*@
-    </td>
     @{
         if (Session["isAdmin"].ToString() == "True")
         {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.DonationID })
-            </td>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
         }
     }
 
-</tr>
-}
+    <center style="font-family:verdana; font-size:50px"><b>Donations</b></center>
 
-</table>
+    <table class="table" align="center">
+        @*<tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.DonationName)
+                </th>
+
+                <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                </th>
+
+                <th >
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+
+                <th hidden>
+                    @Html.DisplayNameFor(model => model.isMonthly)
+                </th>
+                <th></th>
+            </tr>*@
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <center>
+                    @{
+                        Session["DonationID"] = item.DonationID;
+                        Session["Price"] = item.Price;
+                    }
+                    @{
+                        if (item.ImageURL != null)
+                        {
+                            <a href="@Url.Action("Create", "PersonalInfoes" ,item)">
+                                <img src="@Url.Content(item.ImageURL)" alt="Image" height="200" width="300" />
+                            </a>
+
+                        }
+
+                    }
+                    <br>
+                        <b style="font-family:verdana; font-size:20px">
+                            @Html.DisplayFor(modelItem => item.DonationName)
+
+                            Raising $:@Html.DisplayFor(modelItem => item.Price)
+                        </b>
+                    <br>
+                    
+                        @Html.DisplayFor(modelItem => item.Description)
+
+                        @{
+                            if (Session["isAdmin"].ToString() == "True")
+                            {
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.DonationID })
+                                </td>
+                            }
+                        }
+                </center>
+
+                        @*</td>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => item.DonationName)</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+                    <td>
+                        $:@Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td hidden>
+                        @Html.DisplayFor(modelItem => item.isMonthly)
+                    </td>
+                    @{
+                        if (Session["isAdmin"].ToString() == "True")
+                        {
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.DonationID })
+                            </td>
+                        }
+                    }*@
+
+                    </tr>
+        }
+
+    </table>

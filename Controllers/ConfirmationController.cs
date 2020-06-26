@@ -26,6 +26,17 @@ namespace Donations_Software.Controllers
 
         }
 
+        public ActionResult DonationsUser()
+        {
+            //var userId = Session["UserID"];
+            var personalUserInfo = db.PersonalInfoes.ToList().Where(t => t.UserID.ToString() == Session["UserID"].ToString());
+            var donationUserInfoes = (db.DonationUserInfoes.Include(d => d.DonationDetail).Include(d => d.PersonalInfo));
+            //    var infolist = donationUserInfoes.ToList().Where(p => p.personalInfoID.Contains(personalUserInfo));
+            // var total = infolist.Sum(x => x.Amount);
+            //ViewData["total"] = total;
+            return View();
+        }
+
         public ActionResult ModalPopUp()
         {
             var personalId = TempData["personalInfoID"];

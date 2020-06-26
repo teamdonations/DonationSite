@@ -11,6 +11,7 @@ namespace Donations_Software.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class PersonalInfo
     {
@@ -25,6 +26,7 @@ namespace Donations_Software.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<int> CMA_ { get; set; }
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }

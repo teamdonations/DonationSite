@@ -25,9 +25,12 @@ namespace Donations_Software.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         [Display(Name = "Email address")]
-        [Required(ErrorMessage = "The email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")] 
+        [Required(ErrorMessage = "Email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Password is required")]
+        [DataType(DataType.Password, ErrorMessage = "")]
         public string Password { get; set; }
         public Nullable<bool> isAdmin { get; set; }
     
