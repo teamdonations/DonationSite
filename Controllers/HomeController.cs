@@ -20,6 +20,8 @@ namespace Donations_Software.Controllers
 
         public ActionResult Login ()
         {
+            Session["UserID"] = null;
+            Session["isAdmin"] = null;
             return View();
         }
 

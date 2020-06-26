@@ -72,7 +72,7 @@ namespace Donations_Software.Controllers
                 string path = Path.Combine(Server.MapPath("~/Images/"), Path.GetFileName(file.FileName));
                 file.SaveAs(path);
                 donationDetail.ImageURL = "~/Images/" + file.FileName;
-
+                donationDetail.isMonthly = false;
                 db.DonationDetails.Add(donationDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -30,7 +30,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isMonthly)
+            @*@Html.DisplayNameFor(model => model.isMonthly)*@
         </th>
         <th></th>
     </tr>
@@ -65,7 +65,7 @@
         @Html.DisplayFor(modelItem => item.Price)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.isMonthly)
+        @*@Html.DisplayFor(modelItem => item.isMonthly)*@
     </td>
     @{
         if (Session["isAdmin"].ToString() == "True")
