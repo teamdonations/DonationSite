@@ -20,26 +20,31 @@
                     </button>
                     @if (Session["isAdmin"].ToString() == "True")
                     {
-                        @Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });
+                        @*@Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });*@
 
 
                         @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "navbar-brand" });
                         @Html.ActionLink("Posted Donations", "Index", "DonationDetails", new { area = "" }, new { @class = "navbar-brand" });
                         @Html.ActionLink("User Donations", "Index", "DonationUserInfoes", new { area = "" }, new { @class = "navbar-brand" });
-                        @Html.ActionLink("Logout", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });
+                        @*@Html.ActionLink("Logout", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });*@
                     }
                     else
                     {
-                        @Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });
-
-                        @Html.ActionLink("Logout", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });
+                        @*@Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });*@
+                                               
                     }
 
 
                     @*@Html.ActionLink(", "Index", "Home",
-        new { area = "" }, new { @class = "navbar-brand" })*@
+            new { area = "" }, new { @class = "navbar-brand" })*@
                 </div>
-              
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <p class="navbar-brand"><b >@Session["FullName"]</b></p>
+                    </li>
+                    <li>@Html.ActionLink("Logout", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });</li>
+                </ul>
+
             </div>
         </div>
     }
