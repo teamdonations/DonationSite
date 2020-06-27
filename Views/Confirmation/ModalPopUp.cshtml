@@ -48,7 +48,7 @@
                 <div class="col-xs-12">
 
                     <div>
-                        @Html.DisplayNameFor(model => model.PersonalInfo.FirstName)
+                        @*@Html.DisplayNameFor(model => model.PersonalInfo.FirstName)*@
                         <table class="table">
                             <tr>
 
@@ -123,7 +123,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary button button4">Confirm</button>
+                                    <button type="submit" class="btn btn-primary button button4" onclick="window.location.href('@Url.Action("SendEmail","Confirmation")')">Confirm</button>
                                     <button type="button" id="btnHideModal" class="btn btn-primary button button4">
                                         Cancel
                                     </button>

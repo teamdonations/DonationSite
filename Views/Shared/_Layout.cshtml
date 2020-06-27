@@ -34,12 +34,13 @@
                     {
                         @*@Html.ActionLink("Welcome! " + Session["FullName"], "Login", "Home", new { area = "" }, new { @class = "navbar-brand" });*@
                         @Html.ActionLink("Donations", "Index", "DonationDetails", new { area = "" }, new { @class = "navbar-brand" });
-                        @Html.ActionLink("Donation History", "DonationsUser", "Confirmation", new { area = "" }, new { @class = "navbar-brand" });
+                        @Html.ActionLink("Donation History", "Index", "DonationUserInfoes", new { area = "" }, new { @class = "navbar-brand" });
+
                     }
 
 
                     @*@Html.ActionLink(", "Index", "Home",
-                        new { area = "" }, new { @class = "navbar-brand" })*@
+        new { area = "" }, new { @class = "navbar-brand" })*@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li>

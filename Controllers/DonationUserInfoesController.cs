@@ -214,8 +214,8 @@ namespace Donations_Software.Controllers
                     }
 
                 }
-               
-                TempData["personalInfoID"] = personalInfo.personalInfoID;
+                TempData["email"] = personalInfo.Email;
+                 TempData["personalInfoID"] = personalInfo.personalInfoID;
                 return RedirectToAction("ModalPopUp", "Confirmation");
             }
 

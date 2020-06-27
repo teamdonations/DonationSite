@@ -23,9 +23,14 @@ namespace Donations_Software.Models
     
         public int personalInfoID { get; set; }
         public Nullable<int> UserID { get; set; }
+        [Required(ErrorMessage = "First Name is required")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "Last Name is required")]
         public string LastName { get; set; }
         public Nullable<int> CMA_ { get; set; }
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "Email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
         public string Address1 { get; set; }

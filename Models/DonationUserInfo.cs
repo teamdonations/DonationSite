@@ -11,7 +11,8 @@ namespace Donations_Software.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DonationUserInfo
     {
         public int DUID { get; set; }
@@ -20,8 +21,9 @@ namespace Donations_Software.Models
         public List<int> DonationIDList { get; set; }
         public Nullable<int> personalInfoID { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        [Required(ErrorMessage = "Amount is required")]
         public Nullable<decimal> Amount{ get; set; }
-
+        [Required(ErrorMessage = "Amount is required")]
         public List<decimal> AmountList { get; set; }
 
 

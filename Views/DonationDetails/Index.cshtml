@@ -58,27 +58,39 @@ h1 { font-family: fantasy }
                     @{
                         if (item.ImageURL != null)
                         {
-                            <a href="@Url.Action("Create", "PersonalInfoes" ,item)">
+                            @*<a href="@Url.Action("Create", "PersonalInfoes" ,item)">
                                 <img src="@Url.Content(item.ImageURL)" alt="Image" height="200" width="300" />
-                            </a>
+                            </a>*@
+                            if (Session["isAdmin"].ToString() != "True")
+                            {
+                                <a href="@Url.Action("Create", "PersonalInfoes", item)">
+                                    <img src="@Url.Content(item.ImageURL)" alt="Image" height="200" width="300" />
+                                </a>
+                            }
+                            else
+                            {
+                                <a>
+                                    <img src="@Url.Content(item.ImageURL)" alt="Image" height="200" width="300" />
+                                </a>
+                            }
 
                         }
 
                     }
                     <br>
-                        <b style="font-family:verdana; font-size:20px">
-                            @Html.DisplayFor(modelItem => item.DonationName)
+                    <b style="font-family:verdana; font-size:20px">
+                        @Html.DisplayFor(modelItem => item.DonationName)
 
-                            Raising $:@Html.DisplayFor(modelItem => item.Price)
-                        </b>
+                        Raising $:@Html.DisplayFor(modelItem => item.Price)
+                    </b>
                     <br>
-                    
-                        @Html.DisplayFor(modelItem => item.Description)
 
-                        @{
-                            if (Session["isAdmin"].ToString() == "True")
-                            {
-                                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+
+                    @{
+                        if (Session["isAdmin"].ToString() == "True")
+                        {
+<td>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.DonationID }) |
                                     @Html.ActionLink("Details", "Details", new { id = item.DonationID }) |
                                     @Html.ActionLink("Delete", "Delete", new { id = item.DonationID })

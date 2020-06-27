@@ -51,7 +51,7 @@ namespace Donations_Software.Controllers
                 }
                 else 
                 {
-                    ModelState.AddModelError("", "Wrong username and password");
+                    ModelState.AddModelError("", "Wrong username or password");
                 }
             }
 
